@@ -33,8 +33,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="siimple-box siimple--bg-dark">
-        <h1 className="siimple-box-title siimple--color-white">React Todo App</h1>
+      <div className="siimple-box siimple-box--primary">
+        <h1 className="siimple-box-title siimple--color-white">ToDoList</h1>
+        <h2 classNmae="siimple-box-subtitle siimple--color-white">Reactで作ってみた</h2>
         <Form handleAdd={this.handleAdd}/>
         <div className="siimple-rule"></div>
         <List todos={this.state.todo} handleRemove={this.handleRemove}/>
