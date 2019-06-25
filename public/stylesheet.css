@@ -4,4 +4,9 @@
 
 .hometitle {
   color: dimgray;
+  text-align: center;
+}
+
+.card-size {
+  margin: 10px;
 }

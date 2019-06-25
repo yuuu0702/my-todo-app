@@ -1,29 +1,29 @@
 import React from 'react';
 import {Button, Col, Row, Form, ListGroup, ButtonToolbar} from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 
 let style = { maxWidth: '700px' };
 let btn = { cursor: 'pointer' };
 
 const List = (props) => (
-  <Card style={{ width: '18rem' }}>
+  <Container>
     {props.todos.map((todo, i) => {
       return (
+      <Card className="card-size">
+      <Card.Header>{todo.limitDate}までに終わらせます！</Card.Header>
       <Card.Body>
         <Card.Title>{todo.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">サブタイトル</Card.Subtitle>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card's content.
-        </Card.Text>
+        <Card.Text>{todo.subtitle}</Card.Text>
         <ButtonToolbar>
           <Button variant="success" onClick = {() => {props.handleRemove(i)}}>完了</Button>
           <Button variant="danger" onClick = {() => {props.handleRemove(i)}}>削除</Button>
         </ButtonToolbar>
       </Card.Body>
+      </Card>
       );
     })}
-  </Card>
+  </Container>
 );
 
 

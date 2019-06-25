@@ -6,27 +6,32 @@ import Button from 'react-bootstrap/Button'
 const TodoForm = (props) => (
   <Form onSubmit={props.handleAdd}>
     <Form.Row>
-      <Form.Group as={Col} controlId="formGridEmail">
+      <Form.Group as={Col} controlId="formGridTodo">
         <Form.Label>やること</Form.Label>
         <Form.Control name="title" type="text" placeholder="やることを入力してください" />
       </Form.Group>
     </Form.Row>
 
     <Form.Row>
-      <Form.Group as={Col} controlId="formGridCity">
+      <Form.Group as={Col} controlId="formGridDate">
         <Form.Label>いつまで？</Form.Label>
-        <Form.Control type="date"/>
+        <Form.Control type="date" id="limitDate"/>
       </Form.Group>
 
-      <Form.Group as={Col} controlId="formGridState">
+      <Form.Group as={Col} controlId="formGridTag">
         <Form.Label>タグ</Form.Label>
         <Form.Control as="select">
-          <option>研究用</option>
+          <option name="op1">研究用</option>
           <option>学校用</option>
           <option>日常用</option>
           <option>ゲーム用</option>
           <option>人生用</option>
         </Form.Control>
+      </Form.Group>
+    
+      <Form.Group as={Col} controlId="formGridEmail">
+        <Form.Label>補足</Form.Label>
+        <Form.Control name="subtitle" type="text"/>
       </Form.Group>
     </Form.Row>
 

@@ -21,7 +21,13 @@ export default class App extends Component {
   handleAdd(e){
     e.preventDefault();
     // フォームから受け取ったデータをオブジェクトに挿入して、stateのtodo配列に追加
-    this.state.todo.push({title: e.target.title.value});
+    this.state.todo.push(
+      {
+        title: e.target.title.value,
+        subtitle: e.target.subtitle.value,
+        limitDate: e.target.limitDate.value
+      }
+    );
     // setStateを使ってstateを上書き
     this.setState({todo: this.state.todo});
     // inputのvalueを空に
@@ -77,12 +83,12 @@ export default class App extends Component {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="holder.js/800x400?text=３時間&bg=20232a"
+              src="holder.js/800x400?text=２時間&bg=20232a"
               alt="Third slide"
             />
 
             <Carousel.Caption>
-              <h3>このスライドを作るのにかかった時間です</h3>
+              <h3>このスライドを実装するのにかかった時間です</h3>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
