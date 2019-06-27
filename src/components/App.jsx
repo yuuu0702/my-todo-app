@@ -25,8 +25,7 @@ export default class App extends Component {
       {
         title: e.target.title.value,
         subtitle: e.target.subtitle.value,
-        limitDate: e.target.limitDate.value,
-        tag: e.target.tag.value
+        limitDate: e.target.limitDate.value
       }
     );
     // setStateを使ってstateを上書き
@@ -95,7 +94,7 @@ export default class App extends Component {
         </Carousel>
 
         <div className="main-wrapper">
-          <h1 className="hometitle">Input TODO</h1>
+          <h1 classNmae="hometitle">Input TODO</h1>
           <TodoForm handleAdd={this.handleAdd}/>
           <div className="siimple-rule"></div>
           <List todos={this.state.todo} handleRemove={this.handleRemove}/>

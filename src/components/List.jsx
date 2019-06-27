@@ -11,12 +11,7 @@ const List = (props) => (
     {props.todos.map((todo, i) => {
       return (
       <Card className="card-size">
-      <Card.Header>
-        <Row>
-          <Col sm={10}>{todo.limitDate}までに終わらせます！</Col>
-          <Col sm={2}>{todo.tag}</Col>
-        </Row>
-      </Card.Header>
+      <Card.Header>{todo.limitDate}までに終わらせます！</Card.Header>
       <Card.Body>
         <Card.Title>{todo.title}</Card.Title>
         <Card.Text>{todo.subtitle}</Card.Text>
