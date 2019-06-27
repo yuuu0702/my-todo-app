@@ -33,6 +33,7 @@ export default class App extends Component {
     this.setState({todo: this.state.todo});
     // inputのvalueを空に
     e.target.title.value = '';
+    e.target.subtitle.value = '';
   }
 
   // データ削除
