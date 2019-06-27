@@ -1,12 +1,16 @@
 .main-wrapper {
-  background-color: #666666;
+  background-color: #444444;
 }
 
 .hometitle {
-  color: dimgray;
+  color: #FFF;
   text-align: center;
 }
 
 .card-size {
   margin: 10px;
+}
+
+.tag {
+  text-align: right;
 }
