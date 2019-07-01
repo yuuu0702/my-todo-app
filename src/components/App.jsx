@@ -6,15 +6,22 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Carousel from 'react-bootstrap/Carousel'
+import Modal from 'react-bootstrap/Modal'
 
 export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      todo: []
+      todo: [],
+      show: false,
+      level: 1,
+      num: 1,
+      nextLevel: 1
     };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   // データ保存
@@ -42,6 +49,14 @@ export default class App extends Component {
     this.state.todo.splice(i,1);
     // setStateでtodo配列を上書き
     this.setState({todo: this.state.todo});
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
   }
 
   render() {
@@ -95,11 +110,30 @@ export default class App extends Component {
           </Carousel.Item>
         </Carousel>
 
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={this.handleClose}>
+                  Save Changes
+                </Button>
+              </Modal.Footer>
+        </Modal>
+
         <div className="main-wrapper">
           <h1 className="hometitle">Input TODO</h1>
           <TodoForm handleAdd={this.handleAdd}/>
           <div className="siimple-rule"></div>
-          <List todos={this.state.todo} handleRemove={this.handleRemove}/>
+          <List 
+            todos={this.state.todo} 
+            handleRemove={this.handleRemove} 
+            handleShow={this.handleShow}
+          />
         </div> 
       </>
     )
