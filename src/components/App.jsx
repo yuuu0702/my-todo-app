@@ -57,6 +57,7 @@ export default class App extends Component {
 
   handleShow() {
     this.setState({ show: true });
+    this.setState({ level: this.state.level + 1 })
   }
 
   render() {
@@ -112,9 +113,9 @@ export default class App extends Component {
 
         <Modal show={this.state.show} onHide={this.handleClose} centered>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>お疲れさまです！</Modal.Title>
               </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+              <Modal.Body>レベルが上がりました！Lv.{this.state.level}</Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
                   Close
