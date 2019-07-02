@@ -110,7 +110,7 @@ export default class App extends Component {
           </Carousel.Item>
         </Carousel>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal show={this.state.show} onHide={this.handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
               </Modal.Header>
