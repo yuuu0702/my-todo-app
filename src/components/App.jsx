@@ -15,7 +15,9 @@ export default class App extends Component {
       todo: [],
       show: false,
       level: 1,
-      num: 1,
+      num: 10,
+      exp: 0,
+      countDone: 0,
       nextLevel: 1
     };
     this.handleAdd = this.handleAdd.bind(this);
@@ -56,8 +58,27 @@ export default class App extends Component {
   }
 
   handleShow() {
+    //modalの表示
     this.setState({ show: true });
-    this.setState({ level: this.state.level + 1 })
+
+    //レベルアップ機能の処理
+    let level = this.state.level;
+    let num = this.state.num;
+    let nextLevel = this.state.nextLevel;
+    let exp = this.state.exp;
+
+    exp += 10;
+
+    if (exp >= num) {
+      level++;
+      num = num;
+    }
+
+    nextLevel = exp + num;
+
+    this.setState({ level });
+    this.setState({ exp });
+    this.setState({ num });
   }
 
   render() {
@@ -115,7 +136,11 @@ export default class App extends Component {
           <Modal.Header closeButton>
             <Modal.Title>お疲れさまです！</Modal.Title>
               </Modal.Header>
-              <Modal.Body>レベルが上がりました！Lv.{this.state.level}</Modal.Body>
+              <Modal.Body>
+                <h1>レベルが上がりました！Lv.{this.state.level}</h1>
+                <h2>現在の経験値:{this.state.exp}</h2>
+                <h3>次のレベルまであと{this.state.nextLevel}必要です</h3>
+              </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
                   Close
