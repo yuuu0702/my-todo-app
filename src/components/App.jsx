@@ -15,10 +15,10 @@ export default class App extends Component {
       todo: [],
       show: false,
       level: 1,
-      num: 10,
-      exp: 0,
+      expA: 0,
+      expB: 10,
       countDone: 0,
-      nextLevel: 1
+      nextLevel: 10
     };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
@@ -63,22 +63,19 @@ export default class App extends Component {
 
     //レベルアップ機能の処理
     let level = this.state.level;
-    let num = this.state.num;
     let nextLevel = this.state.nextLevel;
-    let exp = this.state.exp;
+    let expA = this.state.expA;
 
-    exp += 10;
+    expA += 10;
 
-    if (exp >= num) {
+    if (expA >= nextLevel){
       level++;
-      num = num;
+      nextLevel = level * 15 + expA - 20;
     }
 
-    nextLevel = exp + num;
-
     this.setState({ level });
-    this.setState({ exp });
-    this.setState({ num });
+    this.setState({ nextLevel });
+    this.setState({ expA });
   }
 
   render() {
@@ -138,7 +135,7 @@ export default class App extends Component {
               </Modal.Header>
               <Modal.Body>
                 <h1>レベルが上がりました！Lv.{this.state.level}</h1>
-                <h2>現在の経験値:{this.state.exp}</h2>
+                <h2>現在の経験値:{this.state.expA}</h2>
                 <h3>次のレベルまであと{this.state.nextLevel}必要です</h3>
               </Modal.Body>
               <Modal.Footer>
