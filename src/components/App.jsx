@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Carousel from 'react-bootstrap/Carousel'
 import Modal from 'react-bootstrap/Modal'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 export default class App extends Component {
   constructor(props){
@@ -15,10 +16,12 @@ export default class App extends Component {
       todo: [],
       show: false,
       level: 1,
-      expA: 0,
-      expB: 10,
-      countDone: 0,
-      nextLevel: 10
+      exp: 0,
+      expBack: 0,
+      countDone: 10,
+      nextLevel: 0,
+      now: 0,
+      doneTitle: ''
     };
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
@@ -64,18 +67,29 @@ export default class App extends Component {
     //レベルアップ機能の処理
     let level = this.state.level;
     let nextLevel = this.state.nextLevel;
-    let expA = this.state.expA;
+    let exp = this.state.exp;
+    let now = this.state.now;
+    let countDone = this.state.countDone;
+    let expBack = this.state.expBack;
 
-    expA += 10;
+    exp += 10;  //完了毎に１０EXP獲得
 
-    if (expA >= nextLevel){
+    if (exp >= countDone){
       level++;
-      nextLevel = level * 15 + expA - 20;
+      countDone = level * 15 + exp - 20;
+      this.setState({name : 'レベルが上がりました！'})
+    }else{
+      this.setState({name : 'お疲れ様です！'})
     }
 
-    this.setState({ level });
-    this.setState({ nextLevel });
-    this.setState({ expA });
+    nextLevel = countDone - exp;
+
+    this.setState({ level }); //レベル
+    this.setState({ nextLevel }); //次に必要な残りのEXP
+    this.setState({ exp }); //EXP
+    this.setState({ now }); //EXPバー
+    this.setState({ countDone }); //次に必要なEXPの合計値
+    this.setState({ expBack }); //EXPのバックアップ
   }
 
   render() {
@@ -131,12 +145,12 @@ export default class App extends Component {
 
         <Modal show={this.state.show} onHide={this.handleClose} centered>
           <Modal.Header closeButton>
-            <Modal.Title>お疲れさまです！</Modal.Title>
+            <Modal.Title>{this.state.name}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <h1>レベルが上がりました！Lv.{this.state.level}</h1>
-                <h2>現在の経験値:{this.state.expA}</h2>
-                <h3>次のレベルまであと{this.state.nextLevel}必要です</h3>
+                <h5>10EXPを獲得</h5>
+                <h5>現在の経験値の合計:{this.state.exp}</h5>
+                <h5>次のレベルまで残り{this.state.nextLevel}EXP</h5>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
@@ -150,6 +164,7 @@ export default class App extends Component {
 
         <div className="main-wrapper">
           <h1 className="hometitle">Input TODO</h1>
+          <h3 className="hometitle">現在のレベル：Lv.{this.state.level}</h3>
           <TodoForm handleAdd={this.handleAdd}/>
           <div className="siimple-rule"></div>
           <List 

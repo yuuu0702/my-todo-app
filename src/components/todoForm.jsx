@@ -39,14 +39,6 @@ const TodoForm = (props) => (
       追加
     </Button>
   </Form>
-
-  /*
-  <form className="siimple-form" onSubmit={props.handleAdd}>
-      <label className="siimple-label siimple--color-white">ToDoを入力:</label>
-      <input name="title" type="text" className="siimple-input"/>
-      <input type="submit" value="追加" className="siimple-btn siimple-btn--teal"/>
-  </form>
-  */
 );
 
 export default TodoForm;
